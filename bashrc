@@ -1,9 +1,13 @@
 # Aliases
 alias ll='ls -la'
 
+# alaska aliases
+alias alaska='cs ~/developer/alaska-air/'
+alias flightinfo='cs ~/developer/alaska-air/Apps/CSA.Mobile.FlightInfo/'
+alias boardingagent='cs ~/developer/alaska-air/BoardingAgent'
+
 # git aliases
 alias ga='git add -A'
-alias gs='git status'
 alias gpull='git pull'
 alias gpush='git push'
 
@@ -14,6 +18,19 @@ function gc(){
 function cs(){
     cd $1
     ll
+}
+
+function gs(){
+
+	if [ $# -eq 0 ]
+  then
+    echo "You can also pass a path to \`gs\` as an argument: EX: gs ~/developer/alaska-air/CSA.Mobile.FlightInfo/"
+		git status
+	else
+		prev=`pwd`
+		cd $1 && git status && cd "${prev}"
+	fi
+
 }
 
 # get current branch in git repo
